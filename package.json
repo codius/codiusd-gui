@@ -1,0 +1,22 @@
+{
+  "name": "codiusd-gui",
+  "version": "1.0.0",
+  "description": "GUI utility for Codius Hosts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nathan Lie",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^6.0.1",
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-views": "^6.1.4",
+    "node-fetch": "^2.1.2",
+    "pug": "^2.0.3",
+    "reduct": "^3.2.0",
+    "riverpig": "^1.1.4"
+  }
+}

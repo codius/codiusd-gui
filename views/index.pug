@@ -1,0 +1,31 @@
+html
+  meta(charset="utf-8")
+  script(defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous")
+  script(src='https://d3js.org/d3.v2.min.js?2.9.3')
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+  |<style>
+  include dashboard.css
+  |</style>
+  script(src="/index.js")
+  body
+    nav.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0
+      a.navbar-brand.col-sm-3.col-md-2.mr-0.d-inline-flex.p-2.justify-content-between(href="/")
+        span.p-1
+          span Codiusd&nbsp;
+          span.text-muted GUI
+        span.p-1#network
+      input.form-control.form-control-dark.w-100(type="text" placeholder="Search" aria-label="Search")
+      ul.navbar-nav.px-3
+        li.nav-item.text-nowrap
+          a.nav-link(onclick="reload_view()") Refresh
+    .container-fluid
+      .row
+        nav.col-md-2.d-none.d-md-block.bg-light.sidebar
+          .sidebar-sticky
+            h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted Actions
+            ul.nav.flex-column
+              li.nav-item
+                a.nav-link(onclick="load_view('pods')")
+                  span.fas.fa-archive
+                  span &nbsp; Pods
+        main#main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4(role="main")
