@@ -24,9 +24,10 @@ class Admin {
     return HOST_ENDPOINTS
   }
 
-  async query (command, vars = []) {
+  async query (command, vars = {}) {
     const query = await this.varBuilder(vars)
     const path = '/' + command + query
+    console.log('PATH: ', path)
     let res
     if (command in HOST_ENDPOINTS) {
       res = await fetch(CODIUS_HOST_URI + path, {

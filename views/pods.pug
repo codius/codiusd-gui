@@ -2,6 +2,13 @@ h1 Pods
 hr/
 .container
   if pods.length > 0
-    div=pods
+    table.table
+      thead
+        tr
+          th(scope="col") Pod ID
+      each pod in pods
+        tr
+          td
+            a(href="/info/podInfo?id=" + pod)=pod
   else
     div This host is currently running no pods.

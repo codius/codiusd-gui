@@ -6,10 +6,12 @@ const path = require('path')
 const riverpig = require('riverpig')
 
 const IndexController = require('./controllers/index')
+const PodsController = require('./controllers/pods')
 
 class App {
   constructor (deps) {
     this.index = deps(IndexController)
+    this.pods = deps(PodsController)
 
     this.router = Router()
     this.parser = Parser()
@@ -34,6 +36,7 @@ class App {
       this.logger.info('listening on: ' + (process.env.PORT || 3300))
 
       await this.index.init(this.router)
+      await this.pods.init(this.router)
       this.logger.info('codiusd-gui ready')
     }
   }
