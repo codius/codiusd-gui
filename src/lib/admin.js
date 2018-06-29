@@ -12,7 +12,8 @@ const ADMIN_ENDPOINTS = {
 
 const HOST_ENDPOINTS = {
   info: true,
-  getMemory: true
+  getMemory: true,
+  version: true
 }
 
 class Admin {

@@ -1,4 +1,8 @@
 const Admin = require('../lib/admin')
+const moment = require('moment')
+const { hostInfoAlias } = require('../util/alias')
+const { hostInfoFormat } = require('../util/formatInfo')
+
 
 const fs = require('fs-extra')
 const path = require('path')
@@ -17,11 +21,25 @@ class IndexController {
       await ctx.render('index')
     })
 
-    router.get('/info/pods', async ctx => {
-      const podList = await this.admin.query('getPods')
-      console.log('podList: ', podList)
-      await ctx.render('pods', {
-        pods: podList.running
+    router.get('/info/home', async ctx => {
+      const hostInfoRaw = await this.admin.query('info')
+      const version = await this.admin.query('version')
+
+      Object.keys(hostInfoRaw).map((key) => {
+        if (hostInfoFormat[key]) {
+          hostInfoRaw[key] = hostInfoFormat[key](hostInfoRaw[key])
+        }
+      })
+
+      let hostInfo = {}
+      Object.keys(hostInfoRaw).map((key) => {
+        hostInfo[hostInfoAlias[key]] = hostInfoRaw[key]
+      })
+
+      console.log(hostInfo)
+      await ctx.render('home', {
+        hostInfo: hostInfo,
+        version: version
       })
     })
 

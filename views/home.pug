@@ -1,0 +1,11 @@
+h1 Codiusd GUI
+h3=hostInfo.uri
+
+.my-3 
+  .table-responsive
+    table.table
+      tbody
+        for item, index in hostInfo
+          tr
+            th(scope="row")=index
+            td=item

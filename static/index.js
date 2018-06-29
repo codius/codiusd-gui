@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-  let active = window.location.hash.substring(1) || 'status'
+  let active = window.location.hash.substring(1) || 'home'
   console.log('active', active)
 
   window.load_view = async function (view) {
@@ -29,7 +29,7 @@ window.addEventListener('load', function () {
   }
 
   window.reload_view = function () {
-    return load_view(window.location.hash.substring(1) || 'status')
+    return load_view(window.location.hash.substring(1) || 'home')
   }
 
   window.load_view(active)

@@ -7,11 +7,13 @@ const riverpig = require('riverpig')
 
 const IndexController = require('./controllers/index')
 const PodsController = require('./controllers/pods')
+const EarningsController = require('./controllers/earnings')
 
 class App {
   constructor (deps) {
     this.index = deps(IndexController)
     this.pods = deps(PodsController)
+    this.earnings = deps(EarningsController)
 
     this.router = Router()
     this.parser = Parser()
@@ -37,6 +39,7 @@ class App {
 
       await this.index.init(this.router)
       await this.pods.init(this.router)
+      await this.earnings.init(this.router)
       this.logger.info('codiusd-gui ready')
     }
   }

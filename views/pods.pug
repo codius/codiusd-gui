@@ -9,6 +9,6 @@ hr/
       each pod in pods
         tr
           td
-            a(href="/info/podInfo?id=" + pod)=pod
+            a.nav-link(onClick="load_view('podInfo?id=" + pod + "')")=pod
   else
-    div This host is currently running no pods.
+    div This host is currently not running any pods.

@@ -1,0 +1,9 @@
+h1 Earnings
+
+.mt-3
+  .table-responsive
+    table.table
+      for item, index in earningsInfo
+        tr
+          th(scope="row")=index
+          td=item

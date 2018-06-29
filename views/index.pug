@@ -22,10 +22,26 @@ html
       .row
         nav.col-md-2.d-none.d-md-block.bg-light.sidebar
           .sidebar-sticky
-            h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted Actions
+            h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted Information
             ul.nav.flex-column
               li.nav-item
+                a.nav-link(onclick="load_view('home')")
+                  span.far.fa-chart-bar
+                  span &nbsp; Status
+              li.nav-item
                 a.nav-link(onclick="load_view('pods')")
-                  span.fas.fa-archive
+                  span.fas.fa-database
                   span &nbsp; Pods
+              li.nav-item
+                a.nav-link(onclick="load_view('server')")
+                  span.fas.fa-hdd
+                  span &nbsp; Server
+              li.nav-item
+                a.nav-link(onclick="load_view('earnings')")
+                  span.fas.fa-money-bill-wave-alt
+                  span &nbsp; Earnings
+              li.nav-item
+                a.nav-link(onclick="load_view('peers')")
+                  span.fas.fa-user-friends
+                  span &nbsp; Peers
         main#main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4(role="main")
