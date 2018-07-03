@@ -1,5 +1,6 @@
 const Admin = require('../lib/admin')
 const { earningsInfoAlias } = require('../util/alias')
+const { earningsInfoFormat } = require('../util/formatInfo')
 
 class EarningsController {
   constructor (deps) {
@@ -11,6 +12,11 @@ class EarningsController {
       const earningsRaw = await this.admin.query('getAllUptime')
       let earnings = {}
       Object.keys(earningsRaw).map((key) => {
+        if (earningsInfoFormat[key]) {
+          console.log('format key: ', key, 'old value=', earningsRaw[key])
+          earningsRaw[key] = earningsInfoFormat[key](earningsRaw[key])
+          console.log('format key: ', key, 'new value=', earningsRaw[key])
+        }
         earnings[earningsInfoAlias[key]] = earningsRaw[key]
       })
 

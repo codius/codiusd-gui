@@ -1,7 +1,16 @@
+nav(aria-label="breadcrumb")
+  ol.breadcrumb.pl-0.pt-0.mb-0(style="background: rgba(245, 245, 245, 0)")
+    li.breadcrumb-item
+      a(onClick="load_view('pods')") Pods
+    li.breadcrumb-item.active Pod Info
 h1 Pod Info
 
 table.table
   tbody
+    each item, index in manifestInfo
+      tr
+        th(scope="row")=index
+        td=item
     each item, index in podInfo
       tr
         th(scope="row")=index

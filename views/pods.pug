@@ -1,14 +1,14 @@
 h1 Pods
-hr/
-.container
-  if pods.length > 0
-    table.table
-      thead
-        tr
-          th(scope="col") Pod ID
-      each pod in pods
-        tr
-          td
-            a.nav-link(onClick="load_view('podInfo?id=" + pod + "')")=pod
-  else
-    div This host is currently not running any pods.
+
+if pods.length > 0
+  table.table
+    thead
+      th(scope="col") Pod ID
+    each pod in pods
+      tr
+        td
+          a.nav-link(href="https://" + pod + '.' + uri target="_blank")=pod
+        td
+          .btn.btn-primary(onClick="load_view('podInfo?id=" + pod + "')") Pod Info
+else
+  div This host is currently not running any pods.

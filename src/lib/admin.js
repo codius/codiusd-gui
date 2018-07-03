@@ -12,8 +12,10 @@ const ADMIN_ENDPOINTS = {
 
 const HOST_ENDPOINTS = {
   info: true,
-  getMemory: true,
-  version: true
+  memory: true,
+  version: true,
+  peers: true,
+  pods: true
 }
 
 class Admin {

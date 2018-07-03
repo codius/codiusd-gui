@@ -25,14 +25,11 @@ class IndexController {
       const hostInfoRaw = await this.admin.query('info')
       const version = await this.admin.query('version')
 
-      Object.keys(hostInfoRaw).map((key) => {
-        if (hostInfoFormat[key]) {
-          hostInfoRaw[key] = hostInfoFormat[key](hostInfoRaw[key])
-        }
-      })
-
       let hostInfo = {}
       Object.keys(hostInfoRaw).map((key) => {
+        if (hostInfoFormat[key]) {
+          hostInfoRaw [key] = hostInfoFormat[key](hostInfoRaw[key])
+        }
         hostInfo[hostInfoAlias[key]] = hostInfoRaw[key]
       })
 

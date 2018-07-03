@@ -17,4 +17,13 @@ const earningsInfoAlias = {
   currency: 'Currency'
 }
 
-module.exports = { hostInfoAlias, earningsInfoAlias }
+const memoryInfoAlias = {
+  freeMem: 'Free Memory'
+}
+
+const manifestInfoAlias = {
+  name: 'Name',
+  machine: 'Machine Type'
+}
+
+module.exports = { hostInfoAlias, earningsInfoAlias, memoryInfoAlias, manifestInfoAlias }
