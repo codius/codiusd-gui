@@ -1,5 +1,6 @@
 const Admin = require('../lib/admin')
 const { manifestInfoAlias } = require('../util/alias')
+const { podInfoFormat } = require('../util/formatInfo')
 
 class PodController {
   constructor (deps) {
@@ -20,7 +21,13 @@ class PodController {
     router.get('/info/podInfo', async ctx => {
       const podInfo = await this.admin.query('getPodInfo', {
         id: ctx.query.id
-      })        
+      })
+
+      Object.keys(podInfo).map((key) => {
+        if (podInfoFormat[key]) {
+          podInfo[key] = podInfoFormat[key](podInfo[key])
+        }
+      })       
 
       const { manifest } = await this.admin.query('pods', {
         manifestHash: ctx.query.id

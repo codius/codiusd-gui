@@ -17,7 +17,8 @@ const memoryInfoFormat = {
 
 const podInfoFormat = {
   start: formatTimestamp,
-  expirty: formatTimestamp
+  expiry: formatTimestamp,
+  totalUptime: formatUptime
 }
 
-module.exports = { hostInfoFormat, earningsInfoFormat, memoryInfoFormat }
+module.exports = { hostInfoFormat, earningsInfoFormat, memoryInfoFormat, podInfoFormat }
