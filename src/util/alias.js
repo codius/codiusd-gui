@@ -1,5 +1,4 @@
 const hostInfoAlias = {
-  fullMem: 'Full Memory',
   acceptingUploads: 'Accepting Uploads',
   serverUptime: 'Server Uptime',
   serviceUptime: 'Codiusd Uptime',
@@ -13,17 +12,34 @@ const hostInfoAlias = {
 
 const earningsInfoAlias = {
   aggregate_pod_uptime: 'Combined Pod Uptime',
-  aggregate_earnings: 'Total Earnings',
-  currency: 'Currency'
+  aggregate_earnings: 'Total Earnings'
 }
 
 const memoryInfoAlias = {
   freeMem: 'Free Memory'
 }
 
-const manifestInfoAlias = {
-  name: 'Name',
-  machine: 'Machine Type'
+const podInfoAlias = {
+  id: 'ID',
+  start: 'Upload Date',
+  expiry: 'Expiration Date',
+  memory: 'Machine Memory',
+  totalUptime: 'Total Uptime',
+  port: 'Port',
+  ip: 'IP Address'
 }
 
-module.exports = { hostInfoAlias, earningsInfoAlias, memoryInfoAlias, manifestInfoAlias }
+const manifestInfoAlias = {
+  name: 'Name',
+  machine: 'Machine Type',
+  version: 'Version',
+  containers: 'Containers'
+}
+
+module.exports = { 
+  hostInfoAlias,
+  earningsInfoAlias,
+  memoryInfoAlias,
+  podInfoAlias,
+  manifestInfoAlias
+}

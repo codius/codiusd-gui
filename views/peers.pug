@@ -4,4 +4,5 @@ table.table
   tbody
     each item in peersInfo
       tr
-        td=item
+        td
+          a(href=item)=item

@@ -1,6 +1,8 @@
 const moment = require('moment')
 
-function formatUptime (uptime) {
+function formatUptime (rawInfo, key) {
+  const uptime = rawInfo[key]
+
   if (uptime === '0') {
     return '0 seconds'
   }
@@ -20,7 +22,8 @@ function formatUptime (uptime) {
   return ret
 }
 
-function formatTimestamp (timestamp) {
+function formatTimestamp (rawInfo, key) {
+  const timestamp = rawInfo[key]
   const time = moment(timestamp)
   console.log(time)
   return time.format('MMMM Do YYYY, h:mm:ss a')

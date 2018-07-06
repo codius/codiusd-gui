@@ -5,6 +5,13 @@ h3=hostInfo.uri
   .table-responsive
     table.table
       tbody
+        for item, index in versionInfo
+          th(scope="row")=index
+          td=item
+        for item, index in memoryInfo
+          tr
+            th(scope="row")=index
+            td=item
         for item, index in hostInfo
           tr
             th(scope="row")=index

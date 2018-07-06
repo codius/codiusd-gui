@@ -6,12 +6,15 @@ const hostInfoFormat = {
 }
 
 const earningsInfoFormat = {
-  aggregate_pod_uptime: formatUptime
+  aggregate_pod_uptime: formatUptime,
+  aggregate_earnings: function (earningsRaw, key) {
+    return earningsRaw[key] + ' ' + earningsRaw['currency']
+  }
 }
 
 const memoryInfoFormat = {
   freeMem: function (memory) {
-    return memory + ' bytes'
+    return (memory / 1000000).toFixed(3) + ' megabytes'
   }
 }
 
@@ -21,4 +24,23 @@ const podInfoFormat = {
   totalUptime: formatUptime
 }
 
-module.exports = { hostInfoFormat, earningsInfoFormat, memoryInfoFormat, podInfoFormat }
+const manifestInfoFormat = {
+  containers: function (containers) {
+    let containerIds = []
+
+    for (index in containers) {
+      console.log(containers[index].id)
+      containerIds.push(containers[index].id)
+    }
+
+    return containerIds
+  }
+}
+
+module.exports = {
+  hostInfoFormat,
+  earningsInfoFormat,
+  memoryInfoFormat,
+  podInfoFormat,
+  manifestInfoFormat
+}

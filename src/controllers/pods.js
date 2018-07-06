@@ -1,6 +1,6 @@
 const Admin = require('../lib/admin')
-const { manifestInfoAlias } = require('../util/alias')
-const { podInfoFormat } = require('../util/formatInfo')
+const { podInfoAlias, manifestInfoAlias } = require('../util/alias')
+const { podInfoFormat, manifestInfoFormat } = require('../util/formatInfo')
 
 class PodController {
   constructor (deps) {
@@ -19,13 +19,18 @@ class PodController {
     })
 
     router.get('/info/podInfo', async ctx => {
-      const podInfo = await this.admin.query('getPodInfo', {
+      const podInfoRaw = await this.admin.query('getPodInfo', {
         id: ctx.query.id
       })
 
-      Object.keys(podInfo).map((key) => {
+      let podInfo = {}
+      Object.keys(podInfoRaw).map((key) => {
         if (podInfoFormat[key]) {
-          podInfo[key] = podInfoFormat[key](podInfo[key])
+          podInfoRaw[key] = podInfoFormat[key](podInfoRaw, key)
+        }
+
+        if (podInfoAlias[key]) {
+          podInfo[podInfoAlias[key]] = podInfoRaw[key]
         }
       })       
 
@@ -35,14 +40,21 @@ class PodController {
 
       let manifestInfo = {} 
       Object.keys(manifest).map((key) => {
+        let manifestVal = manifest[key]
+
+        if (manifestInfoFormat[key]) {
+          manifestVal = manifestInfoFormat[key](manifestVal)
+        }
+
         if (manifestInfoAlias[key]) {
-          manifestInfo[manifestInfoAlias[key]] = manifest[key]
+          manifestInfo[manifestInfoAlias[key]] = manifestVal
         }
       })
 
       await ctx.render('podinfo', {
         podInfo: podInfo,
-        manifestInfo: manifestInfo
+        manifestInfo: manifestInfo,
+        manifest: JSON.stringify(manifest, null, 2)
       })
     })
   }
