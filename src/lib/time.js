@@ -9,15 +9,15 @@ function formatUptime (rawInfo, key) {
 
   const duration = moment.duration(Number(uptime), 'seconds')
   let times = []
-  duration.years() > 0 ? times.push(duration.years() + ' year(s)') : undefined
-  duration.months() > 0 ? times.push(duration.months() + ' month(s)') : undefined
-  duration.days() > 0 ? times.push(duration.days() + ' day(s)') : undefined
-  duration.hours() > 0 ? times.push(duration.hours() + ' hour(s)') : undefined
-  duration.minutes() > 0 ? times.push(duration.minutes() + ' minute(s)') : undefined
-  duration.seconds() > 0 ? times.push(duration.seconds() + ' second(s)') : undefined
-  duration.milliseconds() > 0 ? times.push(duration.milliseconds() + ' millisecond(s)') : undefined
+  duration.years() > 0 ? times.push(duration.years() + ' year(s) ') : undefined
+  duration.months() > 0 ? times.push(duration.months() + ' month(s) ') : undefined
+  duration.days() > 0 ? times.push(duration.days() + ' day(s) ') : undefined
+  times.push(('00' + duration.hours()).slice(-2))
+  times.push(':' + ('00' + duration.minutes()).slice(-2))
+  times.push(':' + ('00' + duration.seconds()).slice(-2))
+  times.push('.' + ('000' + duration.milliseconds()).slice(-3))
 
-  const ret = times.length > 0 ? times.join(' ') : '0 seconds'
+  const ret = times.length > 0 ? times.join('') : '0 seconds'
 
   return ret
 }

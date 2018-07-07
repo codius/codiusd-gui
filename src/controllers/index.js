@@ -8,7 +8,8 @@ const fs = require('fs-extra')
 const path = require('path')
 
 const staticJS = [
-  'index.js'
+  'index.js',
+  'favicon.ico'
 ].map((file) => path.resolve(__dirname, '../../static/' + file))
 
 class IndexController {
