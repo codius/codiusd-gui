@@ -5,17 +5,17 @@ const CODIUS_HOST_PORT = process.env.CODIUS_HOST_PORT || 3000
 const CODIUS_HOST_URI = 'http://localhost:' + CODIUS_HOST_PORT
 
 const ADMIN_ENDPOINTS = {
-  getPods: true,
-  getPodInfo: true,
-  getAllUptime: true
+  getPods: 'GET',
+  getPodInfo: 'GET',
+  getAllUptime: 'GET'
 }
 
 const HOST_ENDPOINTS = {
-  info: true,
-  memory: true,
-  version: true,
-  peers: true,
-  pods: true
+  info: 'GET',
+  memory: 'GET',
+  version: 'GET',
+  peers: 'GET',
+  pods: 'GET'
 }
 
 class Admin {
@@ -27,18 +27,18 @@ class Admin {
     return HOST_ENDPOINTS
   }
 
-  async query (command, vars = {}) {
+  async query (command, vars = {}, payload = {}) {
     const query = await this.varBuilder(vars)
     const path = '/' + command + query
     console.log('PATH: ', path)
     let res
     if (command in HOST_ENDPOINTS) {
       res = await fetch(CODIUS_HOST_URI + path, {
-        method: 'GET'
+        method: HOST_ENDPOINTS[command]
       })
     } else {
       res = await fetch(ADMIN_URI + path, {
-        method: 'GET'
+        method: ADMIN_ENDPOINTS[command]
       })
     }
 
