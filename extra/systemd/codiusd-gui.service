@@ -1,0 +1,14 @@
+[Unit]
+Description=Codiusd GUI
+After=network.target nss-lookup.target codiusd
+[Service]
+ExecStart=/usr/bin/npm start
+WorkingDirectory=/usr/lib/node_modules/codiusd-gui
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=codiusd-gui
+User=root
+Group=root
+[Install]
+WantedBy=multi-user.target
