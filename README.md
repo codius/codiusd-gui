@@ -1,3 +1,7 @@
+# Preface
+
+This assume you have installed codius, if you havent please do so first. If you are using the community installer, this install guide will be added soon on that script.
+
 # How to install codiusd-gui:
 
 This will install the GUI and once sucessfully started it will run on 127.0.0.1 on port 3300. You can SSH 
