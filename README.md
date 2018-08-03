@@ -1,6 +1,6 @@
 # Preface
 
-This assume you have installed codius, if you havent please do so first. If you are using the community installer, this install guide will be added soon on that script.
+This assume you have installed codius, if you havent please do so first. 
 
 # How to install codiusd-gui:
 
@@ -18,8 +18,16 @@ systemctl enable codiusd-gui
 systemctl start codiusd-gui
 ```
 
+Once you have started the codius-gui daemon it will be accessable thru a SSH portforwarding from your workstations. Some examples:
+
+for windows: putty -ssh root@your.host.name -L 3300:127.0.0.1:3300
+for linux: ssh -L 3300:127.0.0.1:3300 root@your.host.name
+
+Once you have connected and logged in, you will be able to open a browser and visit https://localhost:3300 to access the GUI website.
+
+
 # Add Nginx Config
-To keep it simple we use the same template as with Codius. In this example you will see a 'allow 127.0.0.1;'. You must add another line with your trusted IP address to gain access.
+This is an optional step, as a replacement for using the SSH option. To keep it simple we use the same template as with Codius. In this example you will see a 'allow 127.0.0.1;'. You must add another line with your trusted IP address to gain access. Once you have added this configuration and reloaded Nginx, your GUI will be reachable at https://gui.your.host.name:444/ (note its running on port 444)
 
 ```
 map $http_upgrade $connection_upgrade {
@@ -54,6 +62,7 @@ server {
 
     location / {
       allow 127.0.0.1;
+      allow YOUR_TRUSTED_IP;
       deny all;
 
       proxy_pass http://127.0.0.1:3300;
