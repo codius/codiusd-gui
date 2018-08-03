@@ -20,8 +20,10 @@ systemctl start codiusd-gui
 
 Once you have started the codius-gui daemon it will be accessable thru a SSH portforwarding from your workstations. Some examples:
 
+```
 for windows: putty -ssh root@your.host.name -L 3300:127.0.0.1:3300
 for linux: ssh -L 3300:127.0.0.1:3300 root@your.host.name
+```
 
 Once you have connected and logged in, you will be able to open a browser and visit https://localhost:3300 to access the GUI website.
 
