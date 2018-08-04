@@ -9,6 +9,7 @@ const IndexController = require('./controllers/index')
 const PodsController = require('./controllers/pods')
 const EarningsController = require('./controllers/earnings')
 const PeersController = require('./controllers/peers')
+const PriceController = require('./controllers/price')
 
 class App {
   constructor (deps) {
@@ -16,6 +17,7 @@ class App {
     this.pods = deps(PodsController)
     this.earnings = deps(EarningsController)
     this.peers = deps(PeersController)
+    this.price = deps(PriceController)
 
     this.router = Router()
     this.parser = Parser()
@@ -43,6 +45,7 @@ class App {
       await this.pods.init(this.router)
       await this.earnings.init(this.router)
       await this.peers.init(this.router)
+      await this.price.init(this.router)
       this.logger.info('codiusd-gui ready')
     }
   }

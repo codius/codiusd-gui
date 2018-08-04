@@ -9,6 +9,7 @@ const path = require('path')
 
 const staticJS = [
   'index.js',
+  'price.js',
   'favicon.ico'
 ].map((file) => path.resolve(__dirname, '../../static/' + file))
 

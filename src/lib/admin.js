@@ -7,7 +7,8 @@ const CODIUS_HOST_URI = 'http://localhost:' + CODIUS_HOST_PORT
 const ADMIN_ENDPOINTS = {
   getPods: 'GET',
   getPodInfo: 'GET',
-  getAllUptime: 'GET'
+  getAllUptime: 'GET',
+  postConfig: 'POST'
 }
 
 const HOST_ENDPOINTS = {

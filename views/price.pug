@@ -1,0 +1,16 @@
+script(src='/price.js')
+h1 Update Price Rate
+hr/
+.container
+  .row
+    .col-md-4.order-md-1
+      form.needs-validation(novalidate id="price-form")
+        .row
+          .col-md-12.mb-3
+            label(for="price") New Price Value
+            input.form-control(type="number" id="price" required)
+            .invalid-feedback A numeric value is required
+        .mb-3
+          button.btn.btn-primary.btn-lg.btn-block(id="price-btn", onclick="updatePrice(event)") Update
+    //- .col-md-8.order-md-2.overflow-hidden
+    //-   div(id="")

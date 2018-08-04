@@ -34,10 +34,6 @@ html
                 a.nav-link(onclick="load_view('pods')")
                   span.fas.fa-database
                   span &nbsp; Pods
-              //- li.nav-item
-              //-   a.nav-link(onclick="load_view('serverInfo')")
-              //-     span.fas.fa-hdd
-              //-     span &nbsp; Server
               li.nav-item
                 a.nav-link(onclick="load_view('earnings')")
                   span.fas.fa-money-bill-wave-alt
@@ -46,4 +42,10 @@ html
                 a.nav-link(onclick="load_view('peers')")
                   span.fas.fa-user-friends
                   span &nbsp; Peers
+            h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted Actions
+            ul.nav.flex-column
+              li.nav-item
+                a.nav-link(onclick="load_view('price')")
+                  span.fas.fa-tachometer-alt
+                  span &nbsp; Update Rates
         main#main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4(role="main")
