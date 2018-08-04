@@ -14,8 +14,13 @@ class EarningsController {
 
     router.post('/actions/price', async ctx => {
       const newVal = ctx.request.body.price
-      console.log(newVal)
-      await this.admin.query('postConfig', {}, {'hostCostPerMonth': newVal})
+      try {
+        const res = await this.admin.query('config', {}, {hostCostPerMonth: parseInt(newVal)})
+        return res
+      } catch (e) {
+        console.log('admin query err=', e)
+        return
+      }
     })
   }
 }

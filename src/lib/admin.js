@@ -8,7 +8,7 @@ const ADMIN_ENDPOINTS = {
   getPods: 'GET',
   getPodInfo: 'GET',
   getAllUptime: 'GET',
-  postConfig: 'POST'
+  config: 'POST'
 }
 
 const HOST_ENDPOINTS = {
@@ -29,21 +29,35 @@ class Admin {
   }
 
   async query (command, vars = {}, payload = {}) {
+    console.log(payload)
+    const stringifyPayload = JSON.stringify(payload)
     const query = await this.varBuilder(vars)
     const path = '/' + command + query
     console.log('PATH: ', path)
     let res
     if (command in HOST_ENDPOINTS) {
       res = await fetch(CODIUS_HOST_URI + path, {
-        method: HOST_ENDPOINTS[command]
+        method: HOST_ENDPOINTS[command],
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
       })
     } else {
       res = await fetch(ADMIN_URI + path, {
-        method: ADMIN_ENDPOINTS[command]
+        method: ADMIN_ENDPOINTS[command],
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
       })
     }
+    console.log(res)
 
-    return res.json()
+    let ret
+    try {
+      ret = await res.json()
+    } catch (e) {
+      ret = res
+    }
+
+    return ret
   }
   
   async varBuilder (vars) {
