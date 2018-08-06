@@ -28,6 +28,23 @@ class Admin {
     return HOST_ENDPOINTS
   }
 
+  async fetchPath (path, method, payload = {}) {
+    let res
+    if (method === 'GET') {
+      res = await fetch(path, {
+        method: method
+      })
+    } else {
+      res = await fetch(path, {
+        method: method,
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
+    return res
+  }
+
   async query (command, vars = {}, payload = {}) {
     console.log(payload)
     const stringifyPayload = JSON.stringify(payload)
@@ -36,27 +53,26 @@ class Admin {
     console.log('PATH: ', path)
     let res
     if (command in HOST_ENDPOINTS) {
-      res = await fetch(CODIUS_HOST_URI + path, {
-        method: HOST_ENDPOINTS[command],
-        body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'application/json' }
-      })
+      res = await this.fetchPath(CODIUS_HOST_URI + path, 
+        HOST_ENDPOINTS[command],
+        payload
+      )
     } else {
-      res = await fetch(ADMIN_URI + path, {
-        method: ADMIN_ENDPOINTS[command],
-        body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'application/json' }
-      })
+      res = await this.fetchPath(ADMIN_URI + path,
+        ADMIN_ENDPOINTS[command],
+        payload
+      )
     }
-    console.log(res)
+    console.log(res.status)
 
     let ret
     try {
       ret = await res.json()
     } catch (e) {
+      console.log(e)
       ret = res
     }
-
+    console.log('query ret: ', ret)
     return ret
   }
   

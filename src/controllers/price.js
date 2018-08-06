@@ -16,6 +16,11 @@ class EarningsController {
       const newVal = ctx.request.body.price
       try {
         const res = await this.admin.query('config', {}, {hostCostPerMonth: parseInt(newVal)})
+        console.log('price controller res: ')
+        if (res.status === 204) {
+          console.log('returning 204 status')
+          ctx.body = { status: true }
+        }
         return res
       } catch (e) {
         console.log('admin query err=', e)
